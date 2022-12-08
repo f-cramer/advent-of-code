@@ -75,3 +75,14 @@ private val eol = Regex("""\r\n|\r|\n""")
 
 @Suppress("RegExpSimplifiable")
 private fun multipleEoL(count: Int) = "(?:${eol.pattern}){$count}+".toRegex()
+
+data class Vector(
+    val x: Int,
+    val y: Int,
+) {
+    operator fun plus(other: Vector): Vector = Vector(x + other.x, y + other.y)
+}
+
+fun List<List<*>>.isValidIndex(point: Vector): Boolean = point.y in indices && point.x in this[point.y].indices
+
+operator fun <T> List<List<T>>.get(point: Vector): T = this[point.y][point.x]
