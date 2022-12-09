@@ -81,6 +81,12 @@ data class Vector(
     val y: Int,
 ) {
     operator fun plus(other: Vector): Vector = Vector(x + other.x, y + other.y)
+
+    operator fun minus(other: Vector): Vector = Vector(x - other.x, y - other.y)
+
+    companion object {
+        val ZERO = Vector(0, 0)
+    }
 }
 
 fun List<List<*>>.isValidIndex(point: Vector): Boolean = point.y in indices && point.x in this[point.y].indices
