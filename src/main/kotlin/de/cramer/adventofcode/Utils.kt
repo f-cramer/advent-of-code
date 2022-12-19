@@ -92,3 +92,17 @@ data class Vector(
 fun List<List<*>>.isValidIndex(point: Vector): Boolean = point.y in indices && point.x in this[point.y].indices
 
 operator fun <T> List<List<T>>.get(point: Vector): T = this[point.y][point.x]
+
+data class Vector3(
+    val x: Int,
+    val y: Int,
+    val z: Int,
+) {
+    operator fun plus(other: Vector3): Vector3 = Vector3(x + other.x, y + other.y, z + other.z)
+
+    operator fun minus(other: Vector3): Vector3 = Vector3(x - other.x, y - other.y, z - other.z)
+
+    companion object {
+        val ZERO = Vector3(0, 0, 0)
+    }
+}
