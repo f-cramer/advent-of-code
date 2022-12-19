@@ -24,6 +24,11 @@ tasks.test {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "17"
+    kotlinOptions.freeCompilerArgs += "-Xcontext-receivers"
+}
+
+ktlint {
+    version.set("0.45.2")
 }
 
 detekt {
