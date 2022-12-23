@@ -93,6 +93,10 @@ fun List<List<*>>.isValidIndex(point: Vector): Boolean = point.y in indices && p
 
 operator fun <T> List<List<T>>.get(point: Vector): T = this[point.y][point.x]
 
+operator fun <T> MutableList<MutableList<T>>.set(point: Vector, value: T) {
+    this[point.y][point.x] = value
+}
+
 data class Vector3(
     val x: Int,
     val y: Int,
