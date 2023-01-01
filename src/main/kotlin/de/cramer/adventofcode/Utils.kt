@@ -93,11 +93,19 @@ data class Vector(
 
 operator fun Int.times(vector: Vector): Vector = vector * this
 
+fun List<List<*>>.vectors(): Sequence<Vector> = sequence {
+    for (y in indices) {
+        for (x in this@vectors[y].indices) {
+            yield(Vector(x, y))
+        }
+    }
+}
+
 fun List<List<*>>.isValidIndex(point: Vector): Boolean = point.y in indices && point.x in this[point.y].indices
 
 operator fun <T> List<List<T>>.get(point: Vector): T = this[point.y][point.x]
 
-operator fun <T> MutableList<MutableList<T>>.set(point: Vector, value: T) {
+operator fun <T> List<MutableList<T>>.set(point: Vector, value: T) {
     this[point.y][point.x] = value
 }
 
