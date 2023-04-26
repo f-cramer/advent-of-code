@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm") version "1.8.20"
 
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
-    id("org.jlleitschuh.gradle.ktlint") version "11.3.1"
+    id("org.jlleitschuh.gradle.ktlint") version "11.3.2"
 }
 
 group = "de.cramer"
