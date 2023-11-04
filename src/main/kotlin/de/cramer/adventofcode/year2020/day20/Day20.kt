@@ -41,7 +41,7 @@ private fun problem02(input: List<List<Pair<Int, Tile>>>): Int {
             ..................#.
             #....##....##....###
             .#..#..#..#..#..#...
-        """.trimIndent().lines()
+        """.trimIndent().lines(),
     ).variants()
     for ((y, row) in bitmap.withIndex()) {
         for (x in row.indices) {
@@ -78,7 +78,7 @@ private fun String.parse(): List<List<Pair<Int, Tile>>> {
         for (title in lineIterator) {
             require(title.substring(0, 5) == "Tile " && title.last() == ':')
             this[title.substring(5, title.length - 1).toInt()] = BasicTile(
-                lineIterator.asSequence().takeWhile { it.isNotEmpty() }.toList()
+                lineIterator.asSequence().takeWhile { it.isNotEmpty() }.toList(),
             )
         }
     }

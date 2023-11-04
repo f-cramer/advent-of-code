@@ -319,5 +319,7 @@ private fun equals(alu: AluRange, register: Int, argument: Pair<Long, Long>): Ra
 }
 
 private enum class RangeResult {
-    POSSIBLE, IMPOSSIBLE, UNKNOWN
+    POSSIBLE,
+    IMPOSSIBLE,
+    UNKNOWN,
 }

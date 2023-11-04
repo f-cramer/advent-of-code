@@ -66,8 +66,9 @@ private fun List<List<Int>>.getLowPoints() = vectors()
         neighbors(v).all { this[it] > height }
     }
 
+@Suppress("ktlint:standard:argument-list-wrapping")
 private val neighborOffsets = listOf(
-    Vector(-1, 0), Vector(1, 0), Vector(0, -1), Vector(0, 1)
+    Vector(-1, 0), Vector(1, 0), Vector(0, -1), Vector(0, 1),
 )
 
 private fun List<List<Int>>.neighbors(position: Vector): Sequence<Vector> {

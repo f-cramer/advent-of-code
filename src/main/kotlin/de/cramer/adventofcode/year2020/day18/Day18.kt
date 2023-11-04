@@ -111,7 +111,7 @@ private fun String.parse(): List<List<Token>> {
                             else -> error("cannot happen")
                         }
                         1
-                    }
+                    },
                 )
             }
         }
@@ -162,11 +162,13 @@ private data class Number(
 }
 
 private enum class Operator : Token {
-    PLUS, TIMES
+    PLUS,
+    TIMES,
 }
 
 private enum class Parenthesis : Token {
-    OPEN, CLOSE
+    OPEN,
+    CLOSE,
 }
 
 private class ExpressionSetter {

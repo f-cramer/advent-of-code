@@ -85,7 +85,7 @@ data class PlayerState(
         val nextSpace = (space + roll) % 10
         return PlayerState(
             score + nextSpace + 1,
-            nextSpace
+            nextSpace,
         )
     }
 }

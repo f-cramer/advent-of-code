@@ -165,7 +165,7 @@ private fun CharBuffer.parseNumber(): RegularNumber {
             while (peek().isDigit()) {
                 append(get())
             }
-        }.toInt()
+        }.toInt(),
     )
 }
 

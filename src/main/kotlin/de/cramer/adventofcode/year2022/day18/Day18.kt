@@ -65,6 +65,7 @@ private fun String.parse(): Set<Vector3> {
         .toSet()
 }
 
+@Suppress("ktlint:standard:argument-list-wrapping")
 private val neighborDirections = listOf(
     Vector3(-1, 0, 0), Vector3(1, 0, 0),
     Vector3(0, -1, 0), Vector3(0, 1, 0),

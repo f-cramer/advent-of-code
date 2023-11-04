@@ -41,12 +41,12 @@ private fun problem01(input: List<List<Int>>): Int {
     val originsWithDirections = input.indices.flatMap {
         listOf(
             Vector(0, it) to Vector(1, 0),
-            Vector(input[it].size - 1, it) to Vector(-1, 0)
+            Vector(input[it].size - 1, it) to Vector(-1, 0),
         )
     } + input[0].indices.flatMap {
         listOf(
             Vector(it, 0) to Vector(0, 1),
-            Vector(it, input.size - 1) to Vector(0, -1)
+            Vector(it, input.size - 1) to Vector(0, -1),
         )
     }
     return originsWithDirections.flatMap { (origin, direction) ->
@@ -55,8 +55,9 @@ private fun problem01(input: List<List<Int>>): Int {
 }
 
 private fun problem02(input: List<List<Int>>): Int {
+    @Suppress("ktlint:standard:argument-list-wrapping")
     val directions = listOf(
-        Vector(1, 0), Vector(0, 1), Vector(-1, 0), Vector(0, -1)
+        Vector(1, 0), Vector(0, 1), Vector(-1, 0), Vector(0, -1),
     )
 
     fun Vector.getViewingDistance(direction: Vector): Int {

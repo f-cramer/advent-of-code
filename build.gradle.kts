@@ -28,7 +28,13 @@ tasks.withType<KotlinCompile> {
 }
 
 ktlint {
-    version.set("0.45.2")
+    version.set("1.0.1")
+    additionalEditorconfig.putAll(
+        mapOf(
+            "ktlint_code_style" to "intellij_idea",
+            "ktlint_standard_function-signature" to "disabled",
+        ),
+    )
 }
 
 detekt {

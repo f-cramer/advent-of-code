@@ -28,7 +28,7 @@ private fun problem01(input: List<Bag>): Int {
             .forEach { it.addAllContainers(containers) }
     }
 
-    return buildSet { startingBag.addAllContainers(this) }.size - 1
+    return buildSet { STARTING_BAG.addAllContainers(this) }.size - 1
 }
 
 private fun problem02(input: List<Bag>): Long {
@@ -37,10 +37,10 @@ private fun problem02(input: List<Bag>): Long {
     fun String.getContainedBags(): Long = containedByColor.getValue(this)
         .sumOf { it.count * (1 + it.color.getContainedBags()) }
 
-    return startingBag.getContainedBags()
+    return STARTING_BAG.getContainedBags()
 }
 
-const val startingBag = "shiny gold"
+const val STARTING_BAG = "shiny gold"
 private val bagRegex = """(.+) bags contain (.+)\.""".toRegex()
 private val containedRegex = """(\d+) ([^,]+) bags?""".toRegex()
 

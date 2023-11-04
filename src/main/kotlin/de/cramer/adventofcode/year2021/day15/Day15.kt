@@ -62,6 +62,7 @@ private data class HeightMap(
 ) {
     operator fun get(vector: Vector) = grid[vector]
 
+    @Suppress("ktlint:standard:argument-list-wrapping")
     fun getNeighbors(vector: Vector) = sequenceOf(
         Vector(vector.x - 1, vector.y), Vector(vector.x + 1, vector.y),
         Vector(vector.x, vector.y - 1), Vector(vector.x, vector.y + 1),

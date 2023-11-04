@@ -55,5 +55,6 @@ private fun String.parse(): List<List<Tile>> {
 }
 
 private enum class Tile {
-    EMPTY, TREE
+    EMPTY,
+    TREE,
 }

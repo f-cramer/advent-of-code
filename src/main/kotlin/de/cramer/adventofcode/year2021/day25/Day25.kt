@@ -64,7 +64,10 @@ private fun String.parse(): List<List<Tile>> {
 }
 
 private enum class Tile {
-    SOUTH, EAST, EMPTY;
+    SOUTH,
+    EAST,
+    EMPTY,
+    ;
 
     val vector: Vector
         get() = when (this) {

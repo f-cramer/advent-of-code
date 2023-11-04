@@ -90,7 +90,7 @@ private fun List<List<Pixel>>.enhance(rounds: Int, algorithm: List<Pixel>): List
                             val index = Vector(x, y).getAlgorithmIndex(fallback)
                             add(algorithm[index])
                         }
-                    }
+                    },
                 )
             }
         }
@@ -123,5 +123,6 @@ private data class Input(
 private enum class Pixel(
     val value: Int,
 ) {
-    LIGHT(1), DARK(0),
+    LIGHT(1),
+    DARK(0),
 }

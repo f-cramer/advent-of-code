@@ -36,8 +36,9 @@ private fun problem02(input: List<Vector>): Int {
 }
 
 private fun simulateSingleCornOfSand(stones: List<Vector>, breakIfStepConditionFalse: Boolean, stepCondition: (Vector) -> Boolean): List<Vector> {
+    @Suppress("ktlint:standard:argument-list-wrapping")
     fun Vector.possibleNextSteps() = sequenceOf(
-        Vector(x, y + 1), Vector(x - 1, y + 1), Vector(x + 1, y + 1)
+        Vector(x, y + 1), Vector(x - 1, y + 1), Vector(x + 1, y + 1),
     )
 
     val cornsOfSand = mutableSetOf<Vector>()

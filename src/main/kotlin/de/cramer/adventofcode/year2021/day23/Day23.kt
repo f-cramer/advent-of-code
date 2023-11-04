@@ -31,7 +31,7 @@ private fun problem02(input: State): Int {
         listOf(
             " #D#C#B#A#".toList(),
             " #D#B#A#C#".toList(),
-        )
+        ),
     )
     return State(extendedInput).organizeAmphipods()
 }

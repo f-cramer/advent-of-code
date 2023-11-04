@@ -95,11 +95,15 @@ private data class Game(
 private enum class Outcome(
     val score: Long,
 ) {
-    WIN(6), DRAW(3), LOSS(0)
+    WIN(6),
+    DRAW(3),
+    LOSS(0),
 }
 
 private enum class Shape(
     val score: Long,
 ) {
-    ROCK(1), PAPER(2), SCISSORS(3)
+    ROCK(1),
+    PAPER(2),
+    SCISSORS(3),
 }

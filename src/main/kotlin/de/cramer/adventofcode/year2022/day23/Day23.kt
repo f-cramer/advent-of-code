@@ -136,7 +136,8 @@ private fun String.parse(): List<List<Tile>> {
 }
 
 private enum class Tile {
-    ELF, EMPTY
+    ELF,
+    EMPTY,
 }
 
 val northWest = Vector(-1, -1)

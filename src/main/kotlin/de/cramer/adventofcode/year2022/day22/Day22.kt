@@ -131,7 +131,9 @@ private data class Input(
 )
 
 private enum class Tile {
-    OPEN, WALL, EMPTY
+    OPEN,
+    WALL,
+    EMPTY,
 }
 
 private sealed interface Instruction
@@ -145,7 +147,8 @@ private data class TurnInstruction(
 ) : Instruction
 
 private enum class TurnDirection {
-    LEFT, RIGHT
+    LEFT,
+    RIGHT,
 }
 
 private enum class MoveDirection(

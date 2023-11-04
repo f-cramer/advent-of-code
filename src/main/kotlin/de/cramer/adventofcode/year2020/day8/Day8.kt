@@ -102,5 +102,6 @@ private data class NopInstruction(
 }
 
 private enum class State {
-    LOOP, DONE
+    LOOP,
+    DONE,
 }

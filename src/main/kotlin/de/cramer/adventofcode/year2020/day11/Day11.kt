@@ -71,9 +71,12 @@ private fun List<List<Seat>>.getOccupiedSeatsAtEquilibrium(minimumSeatsToLeave: 
 }
 
 private enum class Seat {
-    EMPTY, OCCUPIED, FLOOR,
+    EMPTY,
+    OCCUPIED,
+    FLOOR,
 }
 
+@Suppress("ktlint:standard:argument-list-wrapping")
 private val neighborOffsets = listOf(
     Vector(-1, -1), Vector(0, -1), Vector(1, -1),
     Vector(-1, 0), Vector(1, 0),

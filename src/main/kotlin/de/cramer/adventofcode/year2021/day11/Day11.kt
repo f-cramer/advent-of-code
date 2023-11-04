@@ -78,6 +78,7 @@ private fun List<MutableList<Int>>.simulate(): Set<Vector> {
 
 private operator fun List<List<Int>>.contains(value: Int) = any { value in it }
 
+@Suppress("ktlint:standard:argument-list-wrapping")
 private val neighborOffsets = listOf(
     Vector(-1, -1), Vector(0, -1), Vector(1, -1),
     Vector(-1, 0), Vector(1, 0),

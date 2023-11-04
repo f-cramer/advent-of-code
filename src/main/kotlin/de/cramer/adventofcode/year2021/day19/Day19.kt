@@ -104,7 +104,7 @@ data class Scanner(
             orientScanner(
                 allMatches.entries.sortedBy { it.value },
                 otherMatches.entries.sortedBy { it.value },
-                other
+                other,
             )
         }
     }

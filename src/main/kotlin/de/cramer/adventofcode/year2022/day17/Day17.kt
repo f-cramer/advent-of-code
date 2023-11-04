@@ -73,7 +73,9 @@ private fun problem02(input: List<Direction>, testIterations: Int): Long {
         val cycleIterations = (iterations - iterationCycleOffset) / iterationCycleLength
         val remaining = iterations - iterationCycleOffset - cycleIterations * iterationCycleLength
 
-        val remainingOffset = if (remaining == 0L) 0 else {
+        val remainingOffset = if (remaining == 0L) {
+            0
+        } else {
             val stateBefore = simulate(input, iterationCycleOffset + iterationCycleLength)
             val maxYBefore = stateBefore.rocks.getMaxY()
             val maxYAfter = simulate(input, Math.toIntExact(remaining), stateBefore).rocks.getMaxY()
@@ -117,7 +119,9 @@ private fun simulate(directions: List<Direction>, numberOfRocks: Int, state: Sim
                 direction.vector
             } else if (direction == Direction.RIGHT && rock.getMaxX() < 6) {
                 direction.vector
-            } else Vector.ZERO
+            } else {
+                Vector.ZERO
+            }
 
             if (moved !in rocks) {
                 rock = moved
@@ -223,7 +227,8 @@ private data class SimulationState(
 private enum class Direction(
     val vector: Vector,
 ) {
-    LEFT(Vector(-1, 0)), RIGHT(Vector(1, 0))
+    LEFT(Vector(-1, 0)),
+    RIGHT(Vector(1, 0)),
 }
 
 private fun Char.toDirection() = when (this) {

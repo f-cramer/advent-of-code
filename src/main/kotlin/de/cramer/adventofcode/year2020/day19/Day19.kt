@@ -74,7 +74,7 @@ private fun String.parse(): Input {
                 rest.splitToSequence("|")
                     .map { it.trim() }
                     .map { m -> m.split(" ").map { it.toInt() } }
-                    .toSet()
+                    .toSet(),
             )
         }
     }

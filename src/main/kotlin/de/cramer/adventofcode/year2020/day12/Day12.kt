@@ -152,5 +152,6 @@ private enum class MoveDirection(
 }
 
 private enum class TurnDirection {
-    LEFT, RIGHT
+    LEFT,
+    RIGHT,
 }
