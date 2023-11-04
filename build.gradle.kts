@@ -32,5 +32,5 @@ ktlint {
 }
 
 detekt {
-    config = files("$projectDir/.config/detekt.yml")
+    config.from(files("$projectDir/.config/detekt.yml"))
 }
