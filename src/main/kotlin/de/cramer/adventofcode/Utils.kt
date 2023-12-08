@@ -11,6 +11,8 @@ fun readInput() = readFile("input")
 
 fun readTestInput() = readFile("input-test")
 
+fun readTestInput2() = readFile("input-test-2")
+
 fun <T> checkTestResult(actual: T, expected: T) {
     require(actual == expected) { "wrong test result: is $actual, but should have been $expected" }
 }
