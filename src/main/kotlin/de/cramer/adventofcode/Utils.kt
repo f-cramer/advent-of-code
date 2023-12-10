@@ -88,6 +88,14 @@ data class Vector(
 
     operator fun times(factor: Int): Vector = Vector(x * factor, y * factor)
 
+    fun north(): Vector = copy(y = y - 1)
+
+    fun east(): Vector = copy(x = x + 1)
+
+    fun south(): Vector = copy(y = y + 1)
+
+    fun west(): Vector = copy(x = x - 1)
+
     companion object {
         val ZERO = Vector(0, 0)
     }
