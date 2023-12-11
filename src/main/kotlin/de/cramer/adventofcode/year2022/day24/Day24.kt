@@ -112,7 +112,7 @@ private fun State.moveBlizzards(): State {
     return copy(blizzards = newBlizzards)
 }
 
-private fun State.getPossibleNextPositions(position: Vector) = (Direction.values().asSequence().map { position + it.vector } + position)
+private fun State.getPossibleNextPositions(position: Vector) = (Direction.entries.asSequence().map { position + it.vector } + position)
     .filterNot { it in blizzards.keys }
     .filterNot { it in walls }
     .filter { it.x in 0..bottomRight.x && it.y in 0..bottomRight.y }
