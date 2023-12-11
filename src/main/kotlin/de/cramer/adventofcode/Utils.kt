@@ -130,3 +130,6 @@ data class Vector3(
         val ZERO = Vector3(0, 0, 0)
     }
 }
+
+val IntRange.size: Int
+    get() = (last - first).coerceAtLeast(0)
