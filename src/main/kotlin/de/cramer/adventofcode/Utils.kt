@@ -2,7 +2,6 @@ package de.cramer.adventofcode
 
 import java.text.DecimalFormat
 import kotlin.math.abs
-import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
 private val numberFormatter = DecimalFormat.getNumberInstance()
@@ -33,7 +32,6 @@ fun runProblem02(test: () -> Any) {
     runTest("result02", test)
 }
 
-@OptIn(ExperimentalTime::class)
 fun <T> runTest(name: String, test: () -> T) {
     val (result, duration) = measureTimedValue(test)
     println("$name = $result (in $duration)")
