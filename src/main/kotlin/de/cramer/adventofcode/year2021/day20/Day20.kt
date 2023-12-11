@@ -32,21 +32,6 @@ private fun problem02(input: Input): Int {
     return enhanced.sumOf { l -> l.sumOf { it.value } }
 }
 
-private fun List<List<Pixel>>.print() {
-    fun Pixel.toChar() = when (this) {
-        Pixel.LIGHT -> '#'
-        Pixel.DARK -> ' '
-    }
-
-    for (y in indices) {
-        for (x in this[y].indices) {
-            print(this[y][x].toChar())
-        }
-        println()
-    }
-    println()
-}
-
 private fun List<List<Pixel>>.enhance(rounds: Int, algorithm: List<Pixel>): List<List<Pixel>> {
     fun List<List<Pixel>>.ensurePadding(padding: Pixel): List<List<Pixel>> {
         if (isEmpty()) {
