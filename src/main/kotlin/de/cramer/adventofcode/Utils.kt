@@ -55,7 +55,7 @@ private fun readFile(fileName: String): String {
 }
 
 private fun getCallerPackageName(thisPackageName: String, stackTrace: Array<StackTraceElement>): String {
-    for (i in 2 until stackTrace.size) {
+    for (i in 2..<stackTrace.size) {
         val stackTracePackageName = getPackageName(stackTrace[i].className)
         if (stackTracePackageName != thisPackageName) {
             return stackTracePackageName

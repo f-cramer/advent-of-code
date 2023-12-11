@@ -54,7 +54,7 @@ private fun Input.getPassword(wrapper: (Vector, MoveDirection) -> Pair<Vector, M
             }
 
             is MoveInstructon -> {
-                for (i in 0 until instruction.numberOfTiles) {
+                for (i in 0..<instruction.numberOfTiles) {
                     var next = position + direction.vector
                     var nextDirection = direction
                     if (!tiles.isValidIndex(next) || tiles[next] == Tile.EMPTY) {
@@ -91,7 +91,7 @@ private fun String.parse(): Input {
         val maxLineLength = lines.maxOf { it.length }
         return lines.map { line ->
             val lineLength = line.length
-            (0 until lineLength).map { line[it].toTile() } + (lineLength until maxLineLength).map { Tile.EMPTY }
+            (0..<lineLength).map { line[it].toTile() } + (lineLength..<maxLineLength).map { Tile.EMPTY }
         }
     }
 
@@ -216,12 +216,12 @@ private fun getTestDataWrapper(xLength: Int, yLength: Int): (Vector, MoveDirecti
     // 2 3 4
     //     5 6
 
-    val side1 = Face(xLength / 2 until xLength / 4 * 3, 0 until yLength / 3)
-    val side2 = Face(0 until xLength / 4, yLength / 3 until yLength / 3 * 2)
-    val side3 = Face(xLength / 4 until xLength / 2, yLength / 3 until yLength / 3 * 2)
-    val side4 = Face(xLength / 2 until xLength / 4 * 3, yLength / 3 until yLength / 3 * 2)
-    val side5 = Face(xLength / 2 until xLength / 4 * 3, yLength / 3 * 2 until yLength)
-    val side6 = Face(xLength / 4 * 3 until xLength, yLength / 3 * 2 until yLength)
+    val side1 = Face(xLength / 2..<xLength / 4 * 3, 0..<yLength / 3)
+    val side2 = Face(0..<xLength / 4, yLength / 3..<yLength / 3 * 2)
+    val side3 = Face(xLength / 4..<xLength / 2, yLength / 3..<yLength / 3 * 2)
+    val side4 = Face(xLength / 2..<xLength / 4 * 3, yLength / 3..<yLength / 3 * 2)
+    val side5 = Face(xLength / 2..<xLength / 4 * 3, yLength / 3 * 2..<yLength)
+    val side6 = Face(xLength / 4 * 3..<xLength, yLength / 3 * 2..<yLength)
 
     return { position, direction ->
         when (position) {
@@ -279,12 +279,12 @@ private fun getRealDataWrapper(xLength: Int, yLength: Int): (Vector, MoveDirecti
     // 4 5
     //   6
 
-    val side1 = Face(xLength / 3 until xLength / 3 * 2, 0 until yLength / 4)
-    val side2 = Face(xLength / 3 * 2 until xLength, 0 until yLength / 4)
-    val side3 = Face(xLength / 3 until xLength / 3 * 2, yLength / 4 until yLength / 2)
-    val side4 = Face(0 until xLength / 3, yLength / 2 until yLength / 4 * 3)
-    val side5 = Face(xLength / 3 until xLength / 3 * 2, yLength / 2 until yLength / 4 * 3)
-    val side6 = Face(0 until xLength / 3, yLength / 4 * 3 until yLength)
+    val side1 = Face(xLength / 3..<xLength / 3 * 2, 0..<yLength / 4)
+    val side2 = Face(xLength / 3 * 2..<xLength, 0..<yLength / 4)
+    val side3 = Face(xLength / 3..<xLength / 3 * 2, yLength / 4..<yLength / 2)
+    val side4 = Face(0..<xLength / 3, yLength / 2..<yLength / 4 * 3)
+    val side5 = Face(xLength / 3..<xLength / 3 * 2, yLength / 2..<yLength / 4 * 3)
+    val side6 = Face(0..<xLength / 3, yLength / 4 * 3..<yLength)
 
     return { position, direction ->
         when (position) {

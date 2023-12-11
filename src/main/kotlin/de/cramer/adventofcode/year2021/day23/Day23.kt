@@ -93,7 +93,7 @@ private data class State(
     }
 
     private fun isHallwayClear(start: Int, end: Int): Boolean =
-        hallway.slice(if (start > end) end until start else (start + 1)..end).all { it == '.' }
+        hallway.slice(if (start > end) end..<start else (start + 1)..end).all { it == '.' }
 
     companion object {
         private val moveCosts = mapOf('A' to 1, 'B' to 10, 'C' to 100, 'D' to 1000)

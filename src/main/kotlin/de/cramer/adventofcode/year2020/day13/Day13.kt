@@ -60,5 +60,5 @@ private fun chineseRemaindersTheorem(modulos: List<Pair<Long, Long>>): Long {
     } % n
 }
 
-private fun Long.getInverse(modulus: Long): Long = (1 until modulus)
+private fun Long.getInverse(modulus: Long): Long = (1..<modulus)
     .first { (this * it) % modulus == 1L }

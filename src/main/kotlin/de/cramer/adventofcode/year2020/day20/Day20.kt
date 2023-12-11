@@ -29,9 +29,9 @@ private fun problem02(input: List<List<Pair<Int, Tile>>>): Int {
         for (tiles in input) {
             val iy = size
             for ((_, tile) in tiles) {
-                for (y in 1 until tile.height - 1) {
+                for (y in 1..<tile.height - 1) {
                     val irow = getOrElse(iy + y - 1) { StringBuilder().also(this::add) }
-                    for (x in 1 until tile.width - 1) irow.append(if (tile[x, y]) '#' else '.')
+                    for (x in 1..<tile.width - 1) irow.append(if (tile[x, y]) '#' else '.')
                 }
             }
         }
@@ -47,9 +47,9 @@ private fun problem02(input: List<List<Pair<Int, Tile>>>): Int {
         for (x in row.indices) {
             for (dragon in dragons) {
                 val any = lazy {
-                    (0 until dragon.height).any { dy ->
+                    (0..<dragon.height).any { dy ->
                         val line = bitmap[y + dy]
-                        x + dragon.width >= line.length || (0 until dragon.width).any { dx ->
+                        x + dragon.width >= line.length || (0..<dragon.width).any { dx ->
                             dragon[dx, dy] && line[x + dx] == '.'
                         }
                     }
@@ -58,9 +58,9 @@ private fun problem02(input: List<List<Pair<Int, Tile>>>): Int {
                     continue
                 }
 
-                for (dy in 0 until dragon.height) {
+                for (dy in 0..<dragon.height) {
                     val line = bitmap[y + dy]
-                    for (dx in 0 until dragon.width) {
+                    for (dx in 0..<dragon.width) {
                         if (dragon[dx, dy]) {
                             line[x + dx] = 'O'
                         }
@@ -99,13 +99,13 @@ private sealed interface Tile {
     operator fun get(x: Int, y: Int): Boolean
 
     val top: Int
-        get() = (0 until width).fold(0) { acc, x -> (acc shl 1) or if (this[x, 0]) 1 else 0 }
+        get() = (0..<width).fold(0) { acc, x -> (acc shl 1) or if (this[x, 0]) 1 else 0 }
     val left: Int
-        get() = (0 until height).fold(0) { acc, y -> (acc shl 1) or if (this[0, y]) 1 else 0 }
+        get() = (0..<height).fold(0) { acc, y -> (acc shl 1) or if (this[0, y]) 1 else 0 }
     val bottom: Int
-        get() = (0 until width).fold(0) { acc, x -> (acc shl 1) or if (this[x, height - 1]) 1 else 0 }
+        get() = (0..<width).fold(0) { acc, x -> (acc shl 1) or if (this[x, height - 1]) 1 else 0 }
     val right: Int
-        get() = (0 until height).fold(0) { acc, y -> (acc shl 1) or if (this[width - 1, y]) 1 else 0 }
+        get() = (0..<height).fold(0) { acc, y -> (acc shl 1) or if (this[width - 1, y]) 1 else 0 }
 
     fun variants(): List<Tile> = listOf(
         this,

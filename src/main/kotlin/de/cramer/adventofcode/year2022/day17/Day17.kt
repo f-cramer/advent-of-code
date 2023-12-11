@@ -34,7 +34,7 @@ private fun problem02(input: List<Direction>, testIterations: Int): Long {
 
     val cycle = rocksRange.asSequence().zipWith { (it + 1..rocksRange.last).asSequence() }
         .filter { (a, b) -> b + (b - a) in rocksRange }
-        .map { (a, b) -> a until b }
+        .map { (a, b) -> a..<b }
         .filter { it.length > 10 }
         .first {
             equals(mainRocks, it, (it.last + 1).rangeFor(it.length + 1))
@@ -108,7 +108,7 @@ private fun simulate(directions: List<Direction>, numberOfRocks: Int, state: Sim
     val directionIndex = state.directionIndex
     val rockIndex = state.rockIndex
 
-    for (ignored in 0 until numberOfRocks) {
+    for (ignored in 0..<numberOfRocks) {
         var rock = rockTypes[rockIndex.getAndIncrement()] + Vector(2, rocks.getMaxY() + 4)
         print(rock, rocks)
         while (rock !in rocks && rock.parts.all { p -> p.y >= 0 }) {
@@ -265,4 +265,4 @@ private fun <A, B> Sequence<A>.zipWith(other: (A) -> Sequence<B>): Sequence<Pair
     }
 }
 
-private fun Int.rangeFor(length: Int): IntRange = this until this + length
+private fun Int.rangeFor(length: Int): IntRange = this..<this + length

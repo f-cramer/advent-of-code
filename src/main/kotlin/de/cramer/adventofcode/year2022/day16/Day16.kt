@@ -53,7 +53,7 @@ private fun problem02(input: Map<String, Valve>, distanceCalculator: (Valve, Val
 
     var best = 0
     for (human in bestScores.indices) {
-        for (elephant in human + 1 until bestScores.size) {
+        for (elephant in human + 1..<bestScores.size) {
             val (humanValves, humanReleasedPressure) = bestScores[human]
             val (elephantValves, elephantReleasedPressure) = bestScores[elephant]
             val totalReleasedPressure = humanReleasedPressure + elephantReleasedPressure

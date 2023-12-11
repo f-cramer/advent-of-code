@@ -86,7 +86,7 @@ private operator fun IntRange.minus(other: IntRange): Set<IntRange> = when {
     other.last < first -> setOf(this)
     other.first > last -> setOf(this)
     else -> sequenceOf(
-        first until min(last, other.first),
+        first..<min(last, other.first),
         (other.last + 1)..last,
     )
         .filter { !it.isEmpty() }

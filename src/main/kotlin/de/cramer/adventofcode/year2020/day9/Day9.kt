@@ -37,7 +37,7 @@ private fun getInvalidNumber(numbers: List<Long>, preambelLength: Int): Long {
     return (preambelLength..numbers.lastIndex)
         .first { index ->
             val value = numbers[index]
-            val values = ((index - preambelLength) until index).map { numbers[it] }
+            val values = ((index - preambelLength)..<index).map { numbers[it] }
             values.flatMapIndexed { indexA, a -> values.mapIndexedNotNull { indexB, b -> if (indexA == indexB) null else a + b } }.none {
                 it == value
             }

@@ -20,12 +20,12 @@ fun main() {
 
 private fun problem01(input: List<List<Int>>): Int {
     val size = input[0].size
-    val gammaRate = (0 until size).mapNotNull { index ->
+    val gammaRate = (0..<size).mapNotNull { index ->
         input.asSequence()
             .map { it[index] }
             .mostCommon()
     }.toInt(2)
-    val epsilonRate = (0 until size).mapNotNull { index ->
+    val epsilonRate = (0..<size).mapNotNull { index ->
         input.asSequence()
             .map { it[index] }
             .leastCommon()

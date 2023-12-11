@@ -43,7 +43,7 @@ private fun simulate(input: List<Int>, turns: Int): Int {
     var state = State(Int.MIN_VALUE, null)
 
     input.forEachIndexed { turn, number -> state = sayNumber(number, turn) }
-    for (turn in input.size until turns) {
+    for (turn in input.size..<turns) {
         val latestTurn = state.latestTurn
         state = if (latestTurn == null) {
             sayNumber(0, turn)

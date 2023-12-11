@@ -32,10 +32,10 @@ private fun problem02(input: List<List<Int>>): Int {
     val topLeft = Vector(0, 0)
     val yLength = input.size
 
-    val grid = (0 until yLength * 5).map { y ->
+    val grid = (0..<yLength * 5).map { y ->
         val yField = y / yLength
         val xLength = input[y % yLength].size
-        (0 until xLength * 5).map { x ->
+        (0..<xLength * 5).map { x ->
             val vectorInTopLeft = Vector(x % xLength, y % yLength)
             val topLeftValue = input[vectorInTopLeft]
 
