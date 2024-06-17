@@ -31,6 +31,6 @@ jobs:
     - name: Gradle Wrapper Validation
       uses: gradle/wrapper-validation-action@v3
     - name: Build with Gradle
-      uses: gradle/actions/setup-gradle@v3.3.2
+      uses: gradle/actions/setup-gradle@v3.4.1
       with:
         arguments: build
