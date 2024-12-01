@@ -20,22 +20,19 @@ fun main() {
 
 private fun problem01(input: List<Blueprint>): Int {
     val initialState = State(robots = Amount(ore = 1), remainingRounds = 24)
-    return input.sumOf {
-        with(it) { index * initialState.simulate() }
-    }
+    return input.sumOf { it.index * initialState.simulate(it) }
 }
 
 private fun problem02(input: List<Blueprint>): Int {
     val initialState = State(robots = Amount(ore = 1), remainingRounds = 32)
     return input.asSequence()
         .take(3)
-        .map { with(it) { initialState.simulate() } }
+        .map { initialState.simulate(it) }
         .reduce { acc, it -> acc * it }
 }
 
-context(Blueprint)
-private fun State.simulate(): Int {
-    val costsForOneRobotOfEachType = (oreRobotCosts + clayRobotCosts + obsidianRobotCosts + geodeRobotCosts).copy(geodes = Int.MAX_VALUE - 2)
+private fun State.simulate(blueprint: Blueprint): Int {
+    val costsForOneRobotOfEachType = (blueprint.oreRobotCosts + blueprint.clayRobotCosts + blueprint.obsidianRobotCosts + blueprint.geodeRobotCosts).copy(geodes = Int.MAX_VALUE - 2)
 
     fun ceilDiv(x: Int, y: Int) = ceil(x / y.toDouble()).toInt()
 
@@ -68,10 +65,10 @@ private fun State.simulate(): Int {
         return emptySequence()
     }
 
-    fun State.getOreRobotChoices() = getRobotChoices(oreRobotCosts, Amount(ore = 1), Amount::ore)
-    fun State.getClayRobotChoices() = getRobotChoices(clayRobotCosts, Amount(clay = 1), Amount::clay)
-    fun State.getObsidianRobotChoices() = getRobotChoices(obsidianRobotCosts, Amount(obsidian = 1), Amount::obsidian)
-    fun State.getGeodeRobotChoices() = getRobotChoices(geodeRobotCosts, Amount(geodes = 1), Amount::geodes)
+    fun State.getOreRobotChoices() = getRobotChoices(blueprint.oreRobotCosts, Amount(ore = 1), Amount::ore)
+    fun State.getClayRobotChoices() = getRobotChoices(blueprint.clayRobotCosts, Amount(clay = 1), Amount::clay)
+    fun State.getObsidianRobotChoices() = getRobotChoices(blueprint.obsidianRobotCosts, Amount(obsidian = 1), Amount::obsidian)
+    fun State.getGeodeRobotChoices() = getRobotChoices(blueprint.geodeRobotCosts, Amount(geodes = 1), Amount::geodes)
 
     fun State.getDoNothingChoices() = sequence {
         yield(copy(resources = resources + robots * (remainingRounds - 1), remainingRounds = 1))
