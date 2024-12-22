@@ -1,6 +1,7 @@
 package de.cramer.adventofcode.year2023.day16
 
 import de.cramer.adventofcode.utils.checkTestResult
+import de.cramer.adventofcode.utils.direction.Direction
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runProblem01
@@ -103,13 +104,4 @@ private fun Tile.encounter(direction: Direction) = when (this) {
         Direction.UP, Direction.DOWN -> setOf(Direction.LEFT, Direction.RIGHT)
         Direction.LEFT, Direction.RIGHT -> setOf(direction)
     }
-}
-
-private enum class Direction(
-    val vector: Vector,
-) {
-    LEFT(Vector(-1, 0)),
-    RIGHT(Vector(1, 0)),
-    UP(Vector(0, -1)),
-    DOWN(Vector(0, 1)),
 }

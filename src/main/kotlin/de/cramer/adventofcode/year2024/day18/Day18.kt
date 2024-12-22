@@ -1,6 +1,7 @@
 package de.cramer.adventofcode.year2024.day18
 
 import de.cramer.adventofcode.utils.checkTestResult
+import de.cramer.adventofcode.utils.direction.Direction
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runProblem01
@@ -88,15 +89,6 @@ private data class Input(
     val mapSize: Vector,
     val bytePositions: List<Vector>,
 )
-
-private enum class Direction(
-    val vector: Vector,
-) {
-    UP(Vector(0, -1)),
-    DOWN(Vector(0, 1)),
-    LEFT(Vector(-1, 0)),
-    RIGHT(Vector(1, 0)),
-}
 
 private typealias Path = LinkedHashSet<Vector>
 

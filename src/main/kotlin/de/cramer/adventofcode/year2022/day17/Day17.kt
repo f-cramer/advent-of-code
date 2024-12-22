@@ -1,6 +1,7 @@
 package de.cramer.adventofcode.year2022.day17
 
 import de.cramer.adventofcode.utils.checkTestResult
+import de.cramer.adventofcode.utils.direction.Direction
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runTest
@@ -223,13 +224,6 @@ private data class SimulationState(
     val directionIndex: WrappingIndex,
     val rockIndex: WrappingIndex,
 )
-
-private enum class Direction(
-    val vector: Vector,
-) {
-    LEFT(Vector(-1, 0)),
-    RIGHT(Vector(1, 0)),
-}
 
 private fun Char.toDirection() = when (this) {
     '<' -> Direction.LEFT

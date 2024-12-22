@@ -1,6 +1,8 @@
 package de.cramer.adventofcode.year2024.day16
 
 import de.cramer.adventofcode.utils.checkTestResult
+import de.cramer.adventofcode.utils.direction.Direction
+import de.cramer.adventofcode.utils.direction.opposite
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runProblem01
@@ -173,22 +175,6 @@ private data class Input(
 private enum class Tile {
     WALL,
     EMPTY,
-}
-
-private enum class Direction(
-    val vector: Vector,
-) {
-    UP(Vector(0, -1)),
-    DOWN(Vector(0, 1)),
-    LEFT(Vector(-1, 0)),
-    RIGHT(Vector(1, 0)),
-}
-
-private fun Direction.opposite(): Direction = when (this) {
-    Direction.UP -> Direction.DOWN
-    Direction.DOWN -> Direction.UP
-    Direction.LEFT -> Direction.RIGHT
-    Direction.RIGHT -> Direction.LEFT
 }
 
 private fun Direction.turnCount(target: Direction): Int = when (target) {

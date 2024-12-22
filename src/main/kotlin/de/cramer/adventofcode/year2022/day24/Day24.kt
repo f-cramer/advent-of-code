@@ -1,6 +1,7 @@
 package de.cramer.adventofcode.year2022.day24
 
 import de.cramer.adventofcode.utils.checkTestResult
+import de.cramer.adventofcode.utils.direction.Direction
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runTest
@@ -53,10 +54,10 @@ private fun traverseValley(initialState: State, start: Vector, end: Vector): Pai
 private fun String.parse(): Input {
     fun Char.toDirection() = when (this) {
         '.', '#' -> null
-        '^' -> Direction.NORTH
-        '>' -> Direction.EAST
-        'v' -> Direction.SOUTH
-        '<' -> Direction.WEST
+        '^' -> Direction.UP
+        '>' -> Direction.RIGHT
+        'v' -> Direction.DOWN
+        '<' -> Direction.LEFT
         else -> error("cannot parse $this to direction vector")
     }
 
@@ -99,10 +100,10 @@ private fun State.moveBlizzards(): State {
                 var newPosition = position + it.direction.vector
                 if (newPosition in walls) {
                     newPosition = when (it.direction) {
-                        Direction.NORTH -> position.copy(y = bottomRight.y - 1)
-                        Direction.EAST -> position.copy(x = 1)
-                        Direction.SOUTH -> position.copy(y = 1)
-                        Direction.WEST -> position.copy(x = bottomRight.x - 1)
+                        Direction.UP -> position.copy(y = bottomRight.y - 1)
+                        Direction.RIGHT -> position.copy(x = 1)
+                        Direction.DOWN -> position.copy(y = 1)
+                        Direction.LEFT -> position.copy(x = bottomRight.x - 1)
                     }
                 }
                 newPosition to it
@@ -120,12 +121,3 @@ private fun State.getPossibleNextPositions(position: Vector) = (Direction.entrie
 private data class Blizzard(
     val direction: Direction,
 )
-
-private enum class Direction(
-    val vector: Vector,
-) {
-    NORTH(Vector(0, -1)),
-    EAST(Vector(1, 0)),
-    SOUTH(Vector(0, 1)),
-    WEST(Vector(-1, 0)),
-}

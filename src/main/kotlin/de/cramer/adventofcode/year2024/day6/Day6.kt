@@ -1,6 +1,8 @@
 package de.cramer.adventofcode.year2024.day6
 
 import de.cramer.adventofcode.utils.checkTestResult
+import de.cramer.adventofcode.utils.direction.Direction
+import de.cramer.adventofcode.utils.direction.turnRight
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runProblem01
@@ -28,7 +30,7 @@ private fun problem01(input: Input): Int {
 
             var newPosition = position + direction.vector
             while (newPosition in input.obstacles) {
-                direction = direction.turn()
+                direction = direction.turnRight()
                 newPosition = position + direction.vector
             }
 
@@ -61,7 +63,7 @@ private fun problem02(input: Input): Int {
 
                     var newPosition = position + direction.vector
                     while (newPosition in obstacles) {
-                        direction = direction.turn()
+                        direction = direction.turnRight()
                         newPosition = position + direction.vector
                     }
 
@@ -97,19 +99,3 @@ private data class Input(
     val position: Vector,
     val direction: Direction,
 )
-
-private enum class Direction(
-    val vector: Vector,
-) {
-    UP(Vector(0, -1)),
-    DOWN(Vector(0, 1)),
-    LEFT(Vector(-1, 0)),
-    RIGHT(Vector(1, 0)),
-}
-
-private fun Direction.turn(): Direction = when (this) {
-    Direction.UP -> Direction.RIGHT
-    Direction.DOWN -> Direction.LEFT
-    Direction.LEFT -> Direction.UP
-    Direction.RIGHT -> Direction.DOWN
-}
