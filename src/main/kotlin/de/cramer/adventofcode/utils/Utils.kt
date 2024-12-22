@@ -1,4 +1,4 @@
-package de.cramer.adventofcode
+package de.cramer.adventofcode.utils
 
 import java.text.DecimalFormat
 import kotlin.math.abs

@@ -1,10 +1,10 @@
 package de.cramer.adventofcode.year2022.day24
 
-import de.cramer.adventofcode.Vector
-import de.cramer.adventofcode.checkTestResult
-import de.cramer.adventofcode.readInput
-import de.cramer.adventofcode.readTestInput
-import de.cramer.adventofcode.runTest
+import de.cramer.adventofcode.utils.Vector
+import de.cramer.adventofcode.utils.checkTestResult
+import de.cramer.adventofcode.utils.readInput
+import de.cramer.adventofcode.utils.readTestInput
+import de.cramer.adventofcode.utils.runTest
 import kotlin.math.abs
 
 fun main() {
