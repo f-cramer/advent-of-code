@@ -1,7 +1,7 @@
 package de.cramer.adventofcode.year2020.day1
 
-import de.cramer.adventofcode.utils.cartesianProduct
 import de.cramer.adventofcode.utils.checkTestResult
+import de.cramer.adventofcode.utils.math.cartesianProduct
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runProblem01

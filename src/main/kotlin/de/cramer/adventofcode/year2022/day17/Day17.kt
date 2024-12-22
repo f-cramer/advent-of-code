@@ -1,10 +1,10 @@
 package de.cramer.adventofcode.year2022.day17
 
-import de.cramer.adventofcode.utils.Vector
 import de.cramer.adventofcode.utils.checkTestResult
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runTest
+import de.cramer.adventofcode.utils.vector.Vector
 import java.util.SortedMap
 import java.util.SortedSet
 import kotlin.math.floor

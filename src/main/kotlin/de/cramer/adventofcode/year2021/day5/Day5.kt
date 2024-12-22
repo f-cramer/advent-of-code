@@ -1,11 +1,11 @@
 package de.cramer.adventofcode.year2021.day5
 
-import de.cramer.adventofcode.utils.Vector
 import de.cramer.adventofcode.utils.checkTestResult
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runProblem01
 import de.cramer.adventofcode.utils.runProblem02
+import de.cramer.adventofcode.utils.vector.Vector
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min

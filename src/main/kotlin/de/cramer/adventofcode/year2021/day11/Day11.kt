@@ -1,15 +1,15 @@
 package de.cramer.adventofcode.year2021.day11
 
-import de.cramer.adventofcode.utils.Vector
 import de.cramer.adventofcode.utils.checkTestResult
-import de.cramer.adventofcode.utils.get
-import de.cramer.adventofcode.utils.isValidIndex
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runProblem01
 import de.cramer.adventofcode.utils.runProblem02
-import de.cramer.adventofcode.utils.set
-import de.cramer.adventofcode.utils.vectors
+import de.cramer.adventofcode.utils.vector.Vector
+import de.cramer.adventofcode.utils.vector.get
+import de.cramer.adventofcode.utils.vector.isValidIndex
+import de.cramer.adventofcode.utils.vector.set
+import de.cramer.adventofcode.utils.vector.vectors
 
 fun main() {
     val testInput = readTestInput().parse()

@@ -1,14 +1,14 @@
 package de.cramer.adventofcode.year2023.day13
 
 import de.cramer.adventofcode.utils.checkTestResult
-import de.cramer.adventofcode.utils.get
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runProblem01
 import de.cramer.adventofcode.utils.runProblem02
-import de.cramer.adventofcode.utils.set
 import de.cramer.adventofcode.utils.splitByEmptyLines
-import de.cramer.adventofcode.utils.vectors
+import de.cramer.adventofcode.utils.vector.get
+import de.cramer.adventofcode.utils.vector.set
+import de.cramer.adventofcode.utils.vector.vectors
 import kotlin.math.min
 
 fun main() {

@@ -1,10 +1,10 @@
 package de.cramer.adventofcode.year2022.day18
 
-import de.cramer.adventofcode.utils.Vector3
 import de.cramer.adventofcode.utils.checkTestResult
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runTest
+import de.cramer.adventofcode.utils.vector.Vector3
 import java.util.LinkedList
 import java.util.Queue
 

@@ -1,13 +1,13 @@
 package de.cramer.adventofcode.year2022.day22
 
-import de.cramer.adventofcode.utils.Vector
 import de.cramer.adventofcode.utils.checkTestResult
-import de.cramer.adventofcode.utils.get
-import de.cramer.adventofcode.utils.isValidIndex
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runTest
 import de.cramer.adventofcode.utils.splitByEmptyLines
+import de.cramer.adventofcode.utils.vector.Vector
+import de.cramer.adventofcode.utils.vector.get
+import de.cramer.adventofcode.utils.vector.isValidIndex
 
 fun main() {
     val testInput = readTestInput().parse()

@@ -1,14 +1,14 @@
 package de.cramer.adventofcode.year2024.day13
 
-import de.cramer.adventofcode.utils.LongVector
-import de.cramer.adventofcode.utils.Vector
 import de.cramer.adventofcode.utils.checkTestResult
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runProblem01
 import de.cramer.adventofcode.utils.runProblem02
 import de.cramer.adventofcode.utils.splitByEmptyLines
-import de.cramer.adventofcode.utils.toLong
+import de.cramer.adventofcode.utils.vector.LongVector
+import de.cramer.adventofcode.utils.vector.Vector
+import de.cramer.adventofcode.utils.vector.toLong
 import java.math.MathContext
 import java.math.RoundingMode
 
