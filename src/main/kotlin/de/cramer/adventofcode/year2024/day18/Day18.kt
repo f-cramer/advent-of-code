@@ -2,13 +2,14 @@ package de.cramer.adventofcode.year2024.day18
 
 import de.cramer.adventofcode.utils.checkTestResult
 import de.cramer.adventofcode.utils.direction.Direction
+import de.cramer.adventofcode.utils.graph.SearchResult
+import de.cramer.adventofcode.utils.graph.findShortestPath
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runProblem01
 import de.cramer.adventofcode.utils.runProblem02
 import de.cramer.adventofcode.utils.splitByEmptyLines
 import de.cramer.adventofcode.utils.vector.Vector
-import java.util.PriorityQueue
 import kotlin.math.abs
 
 fun main() {
@@ -24,7 +25,7 @@ fun main() {
 }
 
 private fun problem01(input: Input, byteCount: Int): Int {
-    return getFastestPath(input, byteCount)!!.score
+    return getFastestPath(input, byteCount)!!.cost
 }
 
 private fun problem02(input: Input, byteCount: Int): String {
@@ -39,40 +40,26 @@ private fun problem02(input: Input, byteCount: Int): String {
     error("no skipped path found")
 }
 
-private fun getFastestPath(input: Input, byteCount: Int): State? {
+private fun getFastestPath(input: Input, byteCount: Int): SearchResult<Vector>? {
     val mapSize = input.mapSize
     val bytePositions = input.bytePositions.take(byteCount).toSet()
     val endPosition = mapSize - Vector(1, 1)
+    val path = Path(setOf(Vector.ZERO))
+    val start = Vector.ZERO
 
-    val queue = PriorityQueue(compareBy<State> { it.score + it.distanceToEnd }).apply {
-        val path = Path(setOf(Vector.ZERO))
-        this += State(path, Vector.ZERO, 0, endPosition)
-    }
-
-    val visitedPositions = mutableSetOf<Vector>()
-    while (queue.isNotEmpty()) {
-        val state = queue.poll()!!
-        if (!visitedPositions.add(state.position)) {
-            continue
-        }
-
-        if (state.position == endPosition) {
-            return state
-        }
-
-        Direction.entries.asSequence()
-            .map { state.position + it.vector }
-            .filter { it.x in 0..<mapSize.x && it.y in 0..<mapSize.y }
-            .filter { it !in state.path && it !in bytePositions }
-            .map { p ->
-                val newPath = state.path.copy()
-                newPath += p
-                State(newPath, p, state.score + 1, endPosition)
-            }
-            .forEach(queue::add)
-    }
-
-    return null
+    return runCatching {
+        findShortestPath(
+            start,
+            { this == endPosition },
+            { p ->
+                Direction.entries.asSequence()
+                    .map { p + it.vector }
+                    .filter { it.x in 0..<mapSize.x && it.y in 0..<mapSize.y }
+                    .filter { it !in bytePositions }
+                    .toList()
+            },
+        )
+    }.getOrNull()
 }
 
 private fun String.parse(): Input {

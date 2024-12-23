@@ -3,6 +3,7 @@ package de.cramer.adventofcode.year2024.day16
 import de.cramer.adventofcode.utils.checkTestResult
 import de.cramer.adventofcode.utils.direction.Direction
 import de.cramer.adventofcode.utils.direction.opposite
+import de.cramer.adventofcode.utils.graph.findShortestPath
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runProblem01
@@ -25,55 +26,26 @@ fun main() {
 }
 
 private fun problem01(input: Input): Int {
-    val queue = PriorityQueue(compareBy<State> { it.score + it.distanceToEnd }).apply {
-        val path = Path(mapOf(input.startPosition to input.startDirection))
-        this += State(path, input.startPosition, input.startDirection, path.getScore(input.startDirection), input.endPosition)
-    }
+    data class VectorWithDirection(val position: Vector, val direction: Direction)
 
-    val visitedPositions = mutableSetOf<Vector>()
-    while (queue.isNotEmpty()) {
-        val state = queue.poll()!!
-        if (!visitedPositions.add(state.position)) {
-            continue
-        }
-
-        if (state.position == input.endPosition) {
-            return state.score
-        }
-
-        Direction.entries.asSequence()
-            .map { it to state.position + it.vector }
-            .filter { (_, p) -> p !in state.path && input.map[p] == Tile.EMPTY }
-            .map { (d, p) ->
-                val newPath = state.path.copy()
-                newPath[state.position] = d
-                newPath[p] = d
-
-                var newPosition = p
-                var nextNewPosition = newPosition + d.vector
-                var scoreIncrement = 1
-                while (
-                    input.map[nextNewPosition] == Tile.EMPTY &&
-                    Direction.entries.asSequence()
-                        .filterNot { it == d }
-                        .none { input.map[newPosition + it.vector] == Tile.EMPTY }
-                ) {
-                    newPosition = nextNewPosition
-                    newPath[newPosition] = d
-                    scoreIncrement += 1
-
-                    if (newPosition == input.endPosition) {
-                        break
-                    }
-
-                    nextNewPosition += d.vector
-                }
-                State(newPath, newPosition, d, state.score + scoreIncrement + d.turnCount(state.direction) * 1000, input.endPosition)
-            }
-            .forEach(queue::add)
-    }
-
-    error("no path found")
+    return findShortestPath(
+        VectorWithDirection(input.startPosition, input.startDirection),
+        { position == input.endPosition },
+        { state ->
+            Direction.entries.asSequence()
+                .map { it to state.position + it.vector }
+                .filter { (_, p) -> input.map[p] == Tile.EMPTY }
+                .map { (d, p) -> VectorWithDirection(p, d) }
+                .toList()
+        },
+        { prev, next -> 1 + prev.direction.turnCount(next.direction) * 1000 },
+        {
+            val xDistance = abs(input.endPosition.x - it.position.x)
+            val yDistance = abs(input.endPosition.y - it.position.y)
+            val turn = if (xDistance != 0 && yDistance != 0) 1000 else 0
+            xDistance + yDistance + turn
+        },
+    ).cost
 }
 
 private fun problem02(input: Input): Int {
@@ -106,7 +78,7 @@ private fun problem02(input: Input): Int {
 
         Direction.entries.asSequence()
             .map { it to state.position + it.vector }
-            .filter { (_, p) -> p !in state.path && input.map[p] == Tile.EMPTY }
+            .filter { (_, p) -> input.map[p] == Tile.EMPTY }
             .map { (d, p) ->
                 val newPath = state.path.copy()
                 newPath[state.position] = d

@@ -2,13 +2,13 @@ package de.cramer.adventofcode.year2024.day20
 
 import de.cramer.adventofcode.utils.checkTestResult
 import de.cramer.adventofcode.utils.direction.Direction
+import de.cramer.adventofcode.utils.graph.findShortestPath
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runProblem01
 import de.cramer.adventofcode.utils.runProblem02
 import de.cramer.adventofcode.utils.vector.Vector
 import de.cramer.adventofcode.utils.vector.get
-import java.util.PriorityQueue
 import kotlin.math.absoluteValue
 
 fun main() {
@@ -42,36 +42,16 @@ private fun getPathCountWithSavings(input: Input, minimumSaving: Int, maximumChe
     }.sum()
 }
 
-private fun Input.getShortestPath(): List<Vector> {
-    data class State(val path: List<Vector>, val position: Vector, val score: Int, val endPosition: Vector) {
-        val distanceToEnd = (endPosition.x - position.x).absoluteValue + (endPosition.y - position.y).absoluteValue
-    }
-
-    val queue = PriorityQueue(compareBy<State> { it.score + it.distanceToEnd }).apply {
-        val path = listOf(startPosition)
-        this += State(path, startPosition, 0, endPosition)
-    }
-
-    val visitedPositions = mutableSetOf<Vector>()
-    while (queue.isNotEmpty()) {
-        val state = queue.poll()!!
-        if (!visitedPositions.add(state.position)) {
-            continue
-        }
-
-        if (state.position == endPosition) {
-            return state.path
-        }
-
+private fun Input.getShortestPath(): List<Vector> = findShortestPath(
+    startPosition,
+    { this == endPosition },
+    { p ->
         Direction.entries.asSequence()
-            .map { state.position + it.vector }
-            .filter { it != state.path.last() && map[it] == Tile.EMPTY }
-            .map { State(state.path + it, it, state.score + 1, endPosition) }
-            .forEach(queue::add)
-    }
-
-    error("no path found")
-}
+            .map { p + it.vector }
+            .filter { map[it] == Tile.EMPTY }
+            .toList()
+    },
+).path
 
 private fun String.parse(): Input {
     var startPosition: Vector? = null

@@ -1,6 +1,7 @@
 package de.cramer.adventofcode.year2021.day15
 
 import de.cramer.adventofcode.utils.checkTestResult
+import de.cramer.adventofcode.utils.graph.findShortestPath
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.runProblem01
@@ -8,7 +9,6 @@ import de.cramer.adventofcode.utils.runProblem02
 import de.cramer.adventofcode.utils.vector.Vector
 import de.cramer.adventofcode.utils.vector.get
 import de.cramer.adventofcode.utils.vector.isValidIndex
-import java.util.PriorityQueue
 import kotlin.math.abs
 
 fun main() {
@@ -70,35 +70,7 @@ private data class HeightMap(
         .filter { grid.isValidIndex(it) }
 }
 
-private fun HeightMap.findShortestPathLength(): Int {
-    data class VectorWithDistance(val vector: Vector, val distance: Int)
-
-    val priorityQueue = PriorityQueue<VectorWithDistance>(compareBy { it.distance })
-    val visited = mutableSetOf<Vector>()
-    val totalRiskLevel = mutableMapOf<Vector, Int>()
-
-    totalRiskLevel[start] = 0
-    priorityQueue += VectorWithDistance(start, 0)
-
-    while (priorityQueue.isNotEmpty()) {
-        val (location, distance) = priorityQueue.remove()
-        if (location == end) break
-        visited += location
-
-        val previousRiskLevel = totalRiskLevel[location]
-        if (previousRiskLevel == null || previousRiskLevel < distance) continue
-
-        for (neighbors in getNeighbors(location).filterNot { it in visited }) {
-            val newRiskLevel = previousRiskLevel + this[neighbors]
-            if (newRiskLevel < totalRiskLevel.getOrDefault(neighbors, Int.MAX_VALUE)) {
-                totalRiskLevel[neighbors] = newRiskLevel
-                priorityQueue += VectorWithDistance(neighbors, newRiskLevel)
-            }
-        }
-    }
-
-    return totalRiskLevel[end]!!
-}
+private fun HeightMap.findShortestPathLength() = findShortestPath(start, { this == end }, { getNeighbors(it).toList() }, { _, p -> this[p] }).cost
 
 private fun Vector.getDistanceTo(other: Vector): Int {
     val dx = abs(x - other.x)
