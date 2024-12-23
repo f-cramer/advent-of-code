@@ -34,7 +34,7 @@ private fun problem01(universe: Universe): Int {
             val yDiff = min(a.y, b.y)..max(a.y, b.y)
             val expandedXDiff = expandedColumns.count { it in xDiff }
             val expandedYDiff = expandedRows.count { it in yDiff }
-            xDiff.size + expandedXDiff + yDiff.size + expandedYDiff
+            xDiff.size - 1 + expandedXDiff + yDiff.size - 1 + expandedYDiff
         } / 2
 }
 
@@ -47,7 +47,7 @@ private fun problem02(universe: Universe): Long {
             val yDiff = min(a.y, b.y)..max(a.y, b.y)
             val expandedXDiff = expandedColumns.count { it in xDiff } * 999_999L
             val expandedYDiff = expandedRows.count { it in yDiff } * 999_999L
-            xDiff.size + expandedXDiff + yDiff.size + expandedYDiff
+            xDiff.size - 1 + expandedXDiff + yDiff.size - 1 + expandedYDiff
         } / 2
 }
 

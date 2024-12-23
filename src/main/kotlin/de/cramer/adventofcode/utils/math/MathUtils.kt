@@ -1,7 +1,7 @@
 package de.cramer.adventofcode.utils.math
 
 val IntRange.size: Int
-    get() = (last - first).coerceAtLeast(0)
+    get() = (last - first + 1).coerceAtLeast(0)
 
 fun <T, U> Collection<T>.cartesianProduct(other: Collection<U>): Sequence<Pair<T, U>> = sequence {
     forEach { t ->
