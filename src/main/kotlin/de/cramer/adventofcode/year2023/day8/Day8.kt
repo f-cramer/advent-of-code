@@ -1,6 +1,7 @@
 package de.cramer.adventofcode.year2023.day8
 
 import de.cramer.adventofcode.utils.checkTestResult
+import de.cramer.adventofcode.utils.math.lcm
 import de.cramer.adventofcode.utils.readInput
 import de.cramer.adventofcode.utils.readTestInput
 import de.cramer.adventofcode.utils.readTestInput2
@@ -78,25 +79,4 @@ private fun Node.getNext(instruction: Instruction): String {
         Instruction.R -> right
     }
     return nextNode
-}
-
-fun lcm(a: Long, b: Long): Long {
-    val larger = if (a > b) a else b
-    val maxLcm = a * b
-    var lcm = larger
-    while (lcm <= maxLcm) {
-        if (lcm % a == 0L && lcm % b == 0L) {
-            return lcm
-        }
-        lcm += larger
-    }
-    return maxLcm
-}
-
-fun lcm(numbers: List<Long>): Long {
-    var result = numbers[0]
-    for (i in 1..<numbers.size) {
-        result = lcm(result, numbers[i])
-    }
-    return result
 }
