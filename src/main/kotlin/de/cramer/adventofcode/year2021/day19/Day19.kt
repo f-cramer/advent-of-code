@@ -79,7 +79,7 @@ private fun String.parse(): List<Scanner> {
         .map { it.toScanner() }
 }
 
-data class Scanner(
+private data class Scanner(
     val index: Int,
     var beacons: List<Vector3>,
     var position: Vector3 = Vector3.ZERO,
@@ -234,9 +234,9 @@ data class Scanner(
     }
 }
 
-fun Vector3.distanceTo(other: Vector3): Double =
+private fun Vector3.distanceTo(other: Vector3): Double =
     sqrt(((x - other.x).sqr() + (y - other.y).sqr() + (z - other.z).sqr()).toDouble())
 
-fun Int.sqr() = this * this
+private fun Int.sqr() = this * this
 
-fun Vector3.manhattanDistanceTo(other: Vector3) = abs(x - other.x) + abs(y - other.y) + abs(z - other.z)
+private fun Vector3.manhattanDistanceTo(other: Vector3) = abs(x - other.x) + abs(y - other.y) + abs(z - other.z)
