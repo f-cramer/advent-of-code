@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    implementation("io.github.tudo-aqua:z3-turnkey:4.8.14")
     testImplementation(kotlin("test"))
 }
 
